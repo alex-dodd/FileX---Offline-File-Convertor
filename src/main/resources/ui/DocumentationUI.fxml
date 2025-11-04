@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.WebView?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="ui.controllers.DocumentationUIController" 
+            prefHeight="900.0" prefWidth="1400.0">
+    
+    <top>
+        <VBox spacing="12">
+            <padding>
+                <Insets top="20" right="20" bottom="15" left="20" />
+            </padding>
+            
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label text="FileX Documentation" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="backButton" text="← Back" onAction="#handleBack"
+                        visible="false" managed="false" />
+            </HBox>
+            
+            <VBox spacing="8">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <TextField fx:id="searchField" promptText="Search documentation, features, settings..." 
+                               HBox.hgrow="ALWAYS" onKeyReleased="#handleSearch" onAction="#handleSearch" />
+                    <Button fx:id="searchButton" text="Search" onAction="#handleSearch" />
+                    <Button fx:id="clearSearchButton" text="Clear" onAction="#handleClearSearch"
+                            visible="false" managed="false" />
+                </HBox>
+            </VBox>
+        </VBox>
+    </top>
+    
+    <left>
+        <VBox prefWidth="320">
+            <padding>
+                <Insets top="16" right="16" bottom="16" left="16" />
+            </padding>
+            
+            <Label text="Contents" />
+            
+            <ScrollPane fx:id="navigationScrollPane" fitToWidth="true" VBox.vgrow="ALWAYS">
+                <TreeView fx:id="navigationTree" />
+            </ScrollPane>
+            
+            <VBox fx:id="searchResultsBox" spacing="8" visible="false" managed="false" VBox.vgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label fx:id="searchResultsHeader" text="Search Results" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="searchResultsCount" text="0 results" />
+                </HBox>
+                
+                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <VBox fx:id="searchResultsContainer" spacing="4" />
+                </ScrollPane>
+            </VBox>
+        </VBox>
+    </left>
+    
+    <center>
+        <VBox spacing="0">
+            
+            <HBox fx:id="breadcrumbBox" spacing="8" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets top="16" right="20" bottom="16" left="20" />
+                </padding>
+            </HBox>
+            
+            <ScrollPane fx:id="contentScrollPane" fitToWidth="true" VBox.vgrow="ALWAYS">
+                <WebView fx:id="contentWebView" prefHeight="700" />
+            </ScrollPane>
+        </VBox>
+    </center>
+    
+</BorderPane>

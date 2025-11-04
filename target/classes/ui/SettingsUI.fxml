@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ui.controllers.SettingsUIController"
+      spacing="20" prefWidth="500.0" prefHeight="400.0">
+    
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
+    </padding>
+
+    <VBox spacing="5">
+        <children>
+            <Label text="Settings">
+                <font>
+                    <Font name="System Bold" size="24.0" />
+                </font>
+            </Label>
+            <Label text="Configure FileX basic preferences" />
+        </children>
+    </VBox>
+
+    <VBox spacing="20" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets top="10.0" right="0.0" bottom="10.0" left="0.0" />
+        </padding>
+        
+        <GridPane hgap="15" vgap="20">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="35"/>
+                <ColumnConstraints percentWidth="65"/>
+            </columnConstraints>
+
+            <Label text="Output Location:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <HBox spacing="8" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                <TextField fx:id="defaultOutputLocationField" HBox.hgrow="ALWAYS"
+                           promptText="Choose output folder..."/>
+                <Button fx:id="browseButton" text="Browse" onAction="#handleBrowseOutputLocation"/>
+            </HBox>
+
+            <Label text="File Naming:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="fileNamingConventionBox" GridPane.rowIndex="1" GridPane.columnIndex="1" 
+                      promptText="Select naming pattern..." prefWidth="250.0" />
+
+            <Label text="Overwrite Files:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <CheckBox fx:id="overwriteExistingFilesCheckbox"
+                      text="Automatically overwrite existing files"
+                      GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        </GridPane>
+    </VBox>
+
+    <HBox alignment="CENTER_RIGHT" spacing="15">
+        <Button fx:id="resetButton" text="Reset to Defaults" onAction="#handleResetDefaults"/>
+        <Button fx:id="saveButton" text="Save" onAction="#handleSaveSettings" prefWidth="80"/>
+        <Button fx:id="cancelButton" text="Cancel" onAction="#handleCancelSettings" prefWidth="80"/>
+    </HBox>
+
+</VBox>

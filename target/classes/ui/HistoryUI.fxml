@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.HistoryUIController" prefHeight="750.0" prefWidth="1200.0" spacing="15.0">
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
+    </padding>
+    <children>
+        <VBox spacing="10.0">
+            <children>
+                <Label text="Conversion History Manager">
+                    <font>
+                        <Font name="System Bold" size="26.0" />
+                    </font>
+                </Label>
+                <Label text="View and manage your file conversion history" />
+            </children>
+        </VBox>
+        
+        <VBox spacing="10.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <children>
+                        <Label text="Search:" />
+                        <TextField fx:id="filterField" prefHeight="35.0" prefWidth="400.0" promptText="Search by filename, format, or path..." />
+                        <Button fx:id="clearFilterButton" mnemonicParsing="false" onAction="#handleClearFilter" prefHeight="35.0" prefWidth="80.0" text="Clear" />
+                    </children>
+                </HBox>
+                
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <children>
+                        <Label text="Filter by:" />
+                        <ComboBox fx:id="statusFilter" prefHeight="35.0" prefWidth="120.0" promptText="Status" />
+                        <ComboBox fx:id="timeFilter" prefHeight="35.0" prefWidth="120.0" promptText="Time Period" />
+                        <ComboBox fx:id="formatFilter" prefHeight="35.0" prefWidth="120.0" promptText="Format" />
+                        <Button fx:id="resetFiltersButton" mnemonicParsing="false" onAction="#handleResetFilters" prefHeight="35.0" prefWidth="100.0" text="Reset Filters" />
+                        <Button fx:id="clearHistoryButton" mnemonicParsing="false" onAction="#handleClearHistory" prefHeight="35.0" prefWidth="100.0" text="Clear All" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        
+        <TableView fx:id="historyTable" prefHeight="580.0" prefWidth="1160.0" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="60.0" text="ID" />
+                <TableColumn fx:id="sourcePathColumn" prefWidth="320.0" text="Source File" />
+                <TableColumn fx:id="targetPathColumn" prefWidth="320.0" text="Target File" />
+                <TableColumn fx:id="sourceFormatColumn" prefWidth="120.0" text="From Format" />
+                <TableColumn fx:id="targetFormatColumn" prefWidth="120.0" text="To Format" />
+                <TableColumn fx:id="successColumn" prefWidth="80.0" text="Status" />
+                <TableColumn fx:id="timestampColumn" prefWidth="140.0" text="Date &amp; Time" />
+            </columns>
+        </TableView>
+    </children>
+</VBox>

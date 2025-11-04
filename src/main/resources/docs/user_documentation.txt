@@ -1,0 +1,98 @@
+# Welcome to FileX
+
+FileX is a powerful offline file converter that helps you convert between different file formats quickly and efficiently.
+
+## Getting Started
+
+### Welcome
+Welcome to FileX, your perfect file conversion solution! 
+
+FileX is designed to make file conversion simple, fast, and reliable. Whether you need to convert documents for work, images for web use, or manage archive files, FileX provides all the tools you need in one convenient application.
+
+**What makes FileX special:**
+- **100% Offline** - No internet connection required, your files stay private
+- **Multiple Formats** - Support for documents, images, and archives
+- **User-Friendly** - Intuitive interface designed for all skill levels
+- **Fast & Efficient** - Optimized algorithms for quick conversions
+
+Get started by exploring the features below or jump right in with the Quick Start guide!
+
+### Quick Start
+Follow these simple steps to start converting files:
+
+1. **Launch FileX** - Start the application by navigating the project directry and running mvn clean compile && javafx:run
+2. **Select Files** - Use the file picker to choose the file to convert
+3. **Choose Format** - Select your desired output format from the dropdown menu
+4. **Configure Settings** - Adjust output location if needed
+5. **Convert** - Click the convert button and wait for completion
+6. **Access Results** - Find your converted files in the specified output directory
+
+### Key Features
+FileX offers a comprehensive set of features designed to meet all your conversion needs:
+
+**Format Support:**
+- **Documents**: PDF, DOCX, XSLX
+- **Images**: JPEG, PNG, WebP
+- **Archives**: ZIP
+
+**Advanced Capabilities:**
+- **Custom Output** - Choose where converted files are saved
+- **Conversion History** - Track and repeat previous conversions
+
+## File Conversion
+
+### Document Conversion
+FileX supports conversion between various document formats:
+- **PDF to DOCX** - Convert PDF files to editable Word documents
+- **DOCX to PDF** - Create PDF files from Word documents
+
+### Image Conversion
+Convert between popular image formats:
+- **JPEG to PNG** - Lossless conversion with transparency support
+- **PNG to JPEG** - Compress images for smaller file sizes
+- **WebP Support** - Modern web image format conversion
+
+### Archive Management
+Handle compressed files and archives:
+- **ZIP Creation** - Compress files and folders
+
+## Settings and Configuration
+
+### Settings and Configuration
+Customize FileX to match your workflow and preferences with these comprehensive configuration options:
+
+**Output Settings:**
+- **Default Output Directory** - Choose where converted files are saved by default
+- **Preserve Folder Structure** - Maintain original folder organization in batch conversions
+- **File Naming** - Configure how converted files are named (original, timestamped, custom prefix)
+- **Overwrite Behavior** - Set what happens when target files already exist
+
+**User Interface:**
+- **Confirmation Dialogs** - Enable/disable prompts for irreverisble actions
+
+All settings changes take effect immediately and are automatically saved.
+
+### File History
+FileX maintains a comprehensive history of all your conversion activities, making it easy to track your work and repeat common conversions.
+
+**Viewing History:**
+- **Complete Log** - See all conversions with source files, target files, formats, and timestamps
+- **Success Status** - Quickly identify which conversions completed successfully
+- **Detailed Information** - Double-click any entry to view full conversion details
+- **Chronological Order** - History is sorted with oldest conversions first for easy tracking
+
+**Search and Filter Options:**
+- **Text Search** - Find conversions by filename, path, or format (Ctrl+F)
+- **Status Filter** - Show only successful or failed conversions
+- **Time Filters** - View conversions from today, this week, month, or custom periods
+- **Format Filter** - Focus on specific file format conversions
+
+**History Management:**
+- **Clear History** - Remove old entries to keep the interface clean (Ctrl+Delete)
+
+**Keyboard Shortcuts:**
+- **Ctrl+F** - Focus search field
+- **Ctrl+R** - Reset all filters
+- **F5** - Refresh history display
+- **Escape** - Clear search text
+- **Ctrl+Delete** - Clear all history (with confirmation)

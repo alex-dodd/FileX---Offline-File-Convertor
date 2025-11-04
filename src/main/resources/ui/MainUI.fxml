@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.MainUIController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu text="File">
+            <items>
+              <MenuItem onAction="#handleOpenFile" text="Open File" />
+              <MenuItem onAction="#handleOpenFolder" text="Open Folder" />
+              <SeparatorMenuItem />
+              <MenuItem onAction="#handleExit" text="Exit" />
+            </items>
+          </Menu>
+          <Menu text="Tools">
+            <items>
+              <MenuItem onAction="#handleShowSettings" text="Settings" />
+              <MenuItem onAction="#handleShowHistory" text="History Manager" />
+            </items>
+          </Menu>
+          <Menu text="Help">
+            <items>
+              <MenuItem onAction="#handleShowDocumentation" text="Documentation" />
+              <MenuItem onAction="#handleShowAbout" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <TabPane fx:id="mainTabPane" BorderPane.alignment="CENTER" tabClosingPolicy="UNAVAILABLE" tabMinHeight="30.0" tabMinWidth="120.0" style="-fx-border-color: #cccccc; -fx-border-width: 1px;">
+        <tabs>
+          <Tab closable="false" text="File Converter">
+               <content>
+                  <ScrollPane fitToWidth="true" fitToHeight="true">
+                     <content>
+                        <VBox alignment="TOP_CENTER" spacing="30.0">
+                           <padding>
+                              <Insets top="30.0" right="30.0" bottom="30.0" left="30.0" />
+                           </padding>
+                           <children>
+                              <VBox alignment="CENTER" spacing="10.0">
+                                 <children>
+                                    <Label text="File Format Converter">
+                                       <font>
+                                          <Font name="System Bold" size="28.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Convert files between different formats: DOCX ↔ PDF, CSV ↔ XLSX, WEBP ↔ JPG ↔ PNG" />
+                                 </children>
+                              </VBox>
+                              
+                              <Separator prefWidth="600.0" />
+                              
+                              <VBox alignment="CENTER" maxWidth="700.0" spacing="25.0">
+                                 <children>
+                                    <VBox spacing="12.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                             <children>
+                                                <Label text="Source File">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="*" textFill="red" />
+                                             </children>
+                                          </HBox>
+                                          <HBox spacing="12.0" alignment="CENTER_LEFT">
+                                             <children>
+                                                <TextField fx:id="sourceFileField" promptText="No file selected - click Browse to choose a file..." 
+                                                          HBox.hgrow="ALWAYS" prefHeight="40.0" />
+                                                <Button fx:id="browseFileButton" mnemonicParsing="false" onAction="#handleBrowseFile" text="Browse Files" 
+                                                       prefHeight="40.0" prefWidth="120.0" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    
+                                    <VBox spacing="12.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                             <children>
+                                                <Label text="Target Format">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="*" textFill="red" />
+                                             </children>
+                                          </HBox>
+                                          <ComboBox fx:id="targetFormatBox" maxWidth="1.7976931348623157E308" 
+                                                   promptText="Select the format to convert to..." prefHeight="40.0" />
+                                       </children>
+                                    </VBox>
+                                    
+                                    <VBox spacing="12.0">
+                                       <children>
+                                          <Label text="Output Location (Optional)">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox spacing="12.0" alignment="CENTER_LEFT">
+                                             <children>
+                                                <TextField fx:id="outputLocationField" 
+                                                          promptText="Leave empty to save in the same folder as source file..." 
+                                                          HBox.hgrow="ALWAYS" prefHeight="40.0" />
+                                                <Button fx:id="browseOutputButton" mnemonicParsing="false" onAction="#handleBrowseOutputLocation" 
+                                                       text="Browse Folder" prefHeight="40.0" prefWidth="120.0" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    
+                                    <Separator prefWidth="600.0" />
+                                    
+                                    <VBox spacing="20.0" alignment="CENTER">
+                                       <children>
+                                          <Button fx:id="convertFileButton" mnemonicParsing="false" onAction="#handleConvertFile" text="Start Conversion" 
+                                                 prefHeight="50.0" prefWidth="200.0">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Button>
+                                          <ProgressBar fx:id="conversionProgressBar" maxWidth="600.0" prefHeight="20.0" 
+                                                      progress="0.0" visible="false" />
+                                          <Label fx:id="statusLabel" text="Ready for conversion" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content>
+          </Tab>
+          <Tab closable="false" text="Folder to ZIP">
+               <content>
+                  <ScrollPane fitToWidth="true" fitToHeight="true">
+                     <content>
+                        <VBox alignment="TOP_CENTER" spacing="30.0">
+                           <padding>
+                              <Insets top="30.0" right="30.0" bottom="30.0" left="30.0" />
+                           </padding>
+                           <children>
+                              <VBox alignment="CENTER" spacing="10.0">
+                                 <children>
+                                    <Label text="Folder to ZIP Archive">
+                                       <font>
+                                          <Font name="System Bold" size="28.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Create compressed ZIP archives from folders with optional password protection" />
+                                 </children>
+                              </VBox>
+                              
+                              <Separator prefWidth="600.0" />
+                              
+                              <VBox alignment="CENTER" maxWidth="700.0" spacing="25.0">
+                                 <children>
+                                    <VBox spacing="12.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                             <children>
+                                                <Label text="Source Folder">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="*" textFill="red" />
+                                             </children>
+                                          </HBox>
+                                          <HBox spacing="12.0" alignment="CENTER_LEFT">
+                                             <children>
+                                                <TextField fx:id="sourceFolderField" 
+                                                          promptText="No folder selected - click Browse to choose a folder..." 
+                                                          HBox.hgrow="ALWAYS" prefHeight="40.0" />
+                                                <Button fx:id="browseFolderButton" mnemonicParsing="false" onAction="#handleBrowseFolder" text="Browse Folders" 
+                                                       prefHeight="40.0" prefWidth="120.0" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    
+                                    <VBox spacing="12.0">
+                                       <children>
+                                          <Label text="Output Location (Optional)">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox spacing="12.0" alignment="CENTER_LEFT">
+                                             <children>
+                                                <TextField fx:id="zipOutputLocationField" 
+                                                          promptText="Leave empty to save ZIP in the same location as source folder..." 
+                                                          HBox.hgrow="ALWAYS" prefHeight="40.0" />
+                                                <Button fx:id="browseZipOutputButton" mnemonicParsing="false" onAction="#handleBrowseZipOutputLocation" 
+                                                       text="Browse Folder" prefHeight="40.0" prefWidth="120.0" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    
+                                    <VBox spacing="15.0">
+                                       <children>
+                                          <Label text="Security Options">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <VBox spacing="15.0">
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
+                                             <children>
+                                                <CheckBox fx:id="encryptCheckbox" mnemonicParsing="false" 
+                                                         onAction="#handleEncryptionToggle" text="Enable Password Protection">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </CheckBox>
+                                                <VBox fx:id="passwordBox" spacing="15" visible="false" managed="false">
+                                                   <padding>
+                                                      <Insets left="25.0" />
+                                                   </padding>
+                                                   <children>
+                                                      <HBox spacing="15" alignment="CENTER_LEFT">
+                                                         <children>
+                                                            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                                                               <children>
+                                                                  <Label text="Password:" />
+                                                                  <PasswordField fx:id="passwordField" 
+                                                                                promptText="Enter a secure password..." prefHeight="35.0" />
+                                                               </children>
+                                                            </VBox>
+                                                            <VBox spacing="8" alignment="CENTER_LEFT">
+                                                               <children>
+                                                                  <Label text=" " />
+                                                                  <CheckBox fx:id="showPasswordCheckbox" text="Show Password" 
+                                                                           onAction="#handleShowPasswordToggle" />
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <TextField fx:id="passwordTextField" 
+                                                                promptText="Enter a secure password..." visible="false" 
+                                                                managed="false" prefHeight="35.0" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    
+                                    <Separator prefWidth="600.0" />
+                                    
+                                    <VBox spacing="20.0" alignment="CENTER">
+                                       <children>
+                                          <Button fx:id="convertToZipButton" mnemonicParsing="false" onAction="#handleConvertToZip" 
+                                                 text="Create ZIP Archive" prefHeight="50.0" prefWidth="200.0">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Button>
+                                          <ProgressBar fx:id="zipProgressBar" maxWidth="600.0" prefHeight="20.0" 
+                                                      progress="0.0" visible="false" />
+                                          <Label fx:id="zipStatusLabel" text="Ready to create ZIP archive" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>
