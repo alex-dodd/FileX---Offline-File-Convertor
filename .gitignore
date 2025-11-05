@@ -1,0 +1,19 @@
+# Build artifacts
+target/
+*.class
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Database files
+*.db
+
+# Settings
+settings.properties
