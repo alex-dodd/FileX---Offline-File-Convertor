@@ -1,0 +1,22 @@
+# Build artifacts
+target/
+*.class
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.settings/
+
+# Test files - large binaries
+test_files/*.png
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Database files
+*.db
+
+# Settings
+settings.properties

@@ -1,0 +1,10 @@
+This is a test document for FileX testing.
+
+This document contains simple text content that will be converted from DOCX to PDF format.
+
+Test Variables:
+- File path testing
+- Standard path scenarios
+- Conversion validation
+
+End of test document.

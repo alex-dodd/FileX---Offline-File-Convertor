@@ -326,20 +326,16 @@ This section documents structured testing for two critical input variables using
 
 | Test Type | File Size | Test File Details | Expected Result |
 |-----------|-----------|-------------------|-----------------|
-| Standard | 500 KB | Typical smartphone photo (1920x1080) | Converts successfully in <5 seconds |
 | Standard | 2 MB | High-quality camera photo (4000x3000) | Converts successfully in <10 seconds |
-| Extreme (Lower) | 2 KB | Tiny 50x50px icon image | Converts without error, maintains image integrity |
-| Extreme (Upper) | 50 MB | Large 8000x6000px professional photo | Converts without crash, may take 30+ seconds |
-| Extreme (Upper) | 100 MB | Massive 12000x8000px image | System handles gracefully (or shows appropriate error) |
-| Abnormal | 0 KB | Empty file or corrupted PNG | Shows error message "Cannot read image file" |
-| Abnormal | Non-image | Text file renamed to .png | Shows error message or skips conversion |
+| Extreme | 50 MB | Large 8000x6000px professional photo | Converts without crash, may take 30+ seconds |
+| Abnormal | 0 KB | Empty/corrupted PNG file | Shows error message "Cannot read image file" |
 
 #### How to Conduct This Test:
 
-1. **Prepare test files:**
-   - Create or download PNG images matching the sizes above
-   - Name them clearly: `test_500kb.png`, `test_2mb.png`, `test_2kb.png`, etc.
-   - For abnormal test, create empty file and rename .txt to .png
+1. **Use test files from `test_files/` folder:**
+   - `test_standard_2mb.png` - Standard size test image
+   - `test_extreme_50mb.png` - Large extreme size image  
+   - `test_abnormal_empty.png` - Empty/corrupted file
 
 2. **For each test case:**
    - Open FileX application
@@ -350,40 +346,16 @@ This section documents structured testing for two critical input variables using
    - **Take screenshot BEFORE clicking convert** (showing file details)
    - **Take screenshot AFTER conversion completes** (showing output file and any messages)
    - Record actual time taken
-   - Verify output JPG file opens correctly
-   - Check output file size is reasonable
-
-3. **Screenshot Requirements:**
-   - Before: Show selected file with size visible in file browser
-   - After: Show conversion success/error message AND output file properties
 
 ---
 
 **INSERT SCREENSHOTS BELOW:**
 
-#### Standard Test - 500 KB File
-
-**BEFORE Screenshot:**
-
-`[Insert screenshot showing selection of test_500kb.png file with file size visible]`
-
----
-
-**AFTER Screenshot:**
-
-`[Insert screenshot showing successful conversion message and output JPG file properties]`
-
-**Actual Result:** _______________________________________________
-
-**Time Taken:** _______________________________________________
-
----
-
 #### Standard Test - 2 MB File
 
 **BEFORE Screenshot:**
 
-`[Insert screenshot showing selection of test_2mb.png file]`
+`[Insert screenshot showing selection of test_standard_2mb.png file]`
 
 ---
 
@@ -397,29 +369,11 @@ This section documents structured testing for two critical input variables using
 
 ---
 
-#### Extreme Test - 2 KB Tiny File
-
-**BEFORE Screenshot:**
-
-`[Insert screenshot showing selection of test_2kb.png tiny icon file]`
-
----
-
-**AFTER Screenshot:**
-
-`[Insert screenshot showing conversion result and output file, verify image quality maintained]`
-
-**Actual Result:** _______________________________________________
-
-**Time Taken:** _______________________________________________
-
----
-
 #### Extreme Test - 50 MB Large File
 
 **BEFORE Screenshot:**
 
-`[Insert screenshot showing selection of test_50mb.png large file]`
+`[Insert screenshot showing selection of test_extreme_50mb.png large file]`
 
 ---
 
@@ -433,53 +387,17 @@ This section documents structured testing for two critical input variables using
 
 ---
 
-#### Extreme Test - 100 MB Massive File
-
-**BEFORE Screenshot:**
-
-`[Insert screenshot showing selection of test_100mb.png massive file]`
-
----
-
-**AFTER Screenshot:**
-
-`[Insert screenshot showing how system handles this extreme case - success or appropriate error]`
-
-**Actual Result:** _______________________________________________
-
-**Time Taken:** _______________________________________________
-
----
-
 #### Abnormal Test - 0 KB Empty File
 
 **BEFORE Screenshot:**
 
-`[Insert screenshot showing selection of empty_file.png with 0 KB size]`
+`[Insert screenshot showing selection of test_abnormal_empty.png with 0 KB size]`
 
 ---
 
 **AFTER Screenshot:**
 
 `[Insert screenshot showing error message displayed by FileX]`
-
-**Actual Result:** _______________________________________________
-
-**Error Message Shown:** _______________________________________________
-
----
-
-#### Abnormal Test - Non-Image File
-
-**BEFORE Screenshot:**
-
-`[Insert screenshot showing selection of textfile.png (actually a text file)]`
-
----
-
-**AFTER Screenshot:**
-
-`[Insert screenshot showing error handling when attempting to convert non-image]`
 
 **Actual Result:** _______________________________________________
 
@@ -500,24 +418,18 @@ This section documents structured testing for two critical input variables using
 | Test Type | File Path / Name | Test Description | Expected Result |
 |-----------|------------------|------------------|-----------------|
 | Standard | `C:\Documents\report.docx` | Normal path with simple filename | Converts successfully |
-| Standard | `C:\My Files\project report.docx` | Path with space in folder name | Converts successfully |
-| Extreme (Length) | Path >200 characters | Very long nested folder path | Converts or shows clear error |
-| Extreme (Depth) | Folder nested 15 levels deep | Testing path depth limit | Handles gracefully |
+| Extreme | Path >200 characters | Very long nested folder path | Converts or shows clear error |
 | Abnormal | `report!@#$%.docx` | Special characters in filename | Converts (or rejects with clear message) |
-| Abnormal | `תּוֹרָה.docx` | Unicode/Hebrew characters | Handles unicode correctly |
-| Abnormal | `file..docx` (double dot) | Invalid filename format | Shows error about invalid filename |
-| Abnormal | Read-only destination | Output folder is read-only | Shows permission error message |
 
 #### How to Conduct This Test:
 
-1. **Prepare test environment:**
-   - Create identical DOCX file content (simple text document: "This is a test document.")
-   - Save copies with different names/paths matching test cases
-   - Create folder structures for nested path tests
-   - Set up read-only folder for permission test
+1. **Use test files from `test_files/` folder:**
+   - `test_standard_simple.docx` - Standard test file
+   - `test_extreme_longpath.docx` - File in very long path (place in deeply nested folders)
+   - `test_abnormal_special!@#.docx` - File with special characters in name
 
 2. **For each test case:**
-   - Place test DOCX file in the specified path
+   - Place test DOCX file in the specified location
    - Open FileX
    - Browse and select the test file
    - Choose PDF as target format
@@ -525,12 +437,6 @@ This section documents structured testing for two critical input variables using
    - **Take screenshot BEFORE conversion** (showing file path clearly visible)
    - Click convert
    - **Take screenshot AFTER conversion** (showing result and output file path)
-   - Verify PDF was created in correct location
-   - Open PDF to verify content converted correctly
-
-3. **Screenshot Requirements:**
-   - Before: Show file browser with full path visible
-   - After: Show success/error message AND file explorer with output file
 
 ---
 
@@ -549,24 +455,6 @@ This section documents structured testing for two critical input variables using
 **AFTER Screenshot:**
 
 `[Insert screenshot showing successful conversion with output PDF]`
-
-**Actual Result:** _______________________________________________
-
----
-
-#### Standard Test - Path With Spaces
-
-**File Path:** `C:\My Files\project report.docx`
-
-**BEFORE Screenshot:**
-
-`[Insert screenshot showing path with spaces selected]`
-
----
-
-**AFTER Screenshot:**
-
-`[Insert screenshot showing conversion result]`
 
 **Actual Result:** _______________________________________________
 
@@ -591,25 +479,6 @@ This section documents structured testing for two critical input variables using
 
 ---
 
-#### Extreme Test - Deep Nesting (15 Folders Deep)
-
-**File Path:** (example structure)  
-`C:\Folder1\Folder2\Folder3\Folder4\Folder5\Folder6\Folder7\Folder8\Folder9\Folder10\Folder11\Folder12\Folder13\Folder14\Folder15\report.docx`
-
-**BEFORE Screenshot:**
-
-`[Insert screenshot showing deeply nested path]`
-
----
-
-**AFTER Screenshot:**
-
-`[Insert screenshot showing conversion result]`
-
-**Actual Result:** _______________________________________________
-
----
-
 #### Abnormal Test - Special Characters in Filename
 
 **File Path:** `C:\Documents\report!@#$%.docx`
@@ -627,67 +496,6 @@ This section documents structured testing for two critical input variables using
 **Actual Result:** _______________________________________________
 
 **Error Message (if any):** _______________________________________________
-
----
-
-#### Abnormal Test - Unicode Characters
-
-**File Path:** `C:\Documents\תורה.docx` (Hebrew)
-
-**BEFORE Screenshot:**
-
-`[Insert screenshot showing unicode filename]`
-
----
-
-**AFTER Screenshot:**
-
-`[Insert screenshot showing unicode handling result]`
-
-**Actual Result:** _______________________________________________
-
----
-
-#### Abnormal Test - Invalid Filename Format
-
-**File Path:** `C:\Documents\file..docx` (double dot before extension)
-
-**BEFORE Screenshot:**
-
-`[Insert screenshot showing invalid filename format]`
-
----
-
-**AFTER Screenshot:**
-
-`[Insert screenshot showing error message about invalid filename]`
-
-**Actual Result:** _______________________________________________
-
-**Error Message:** _______________________________________________
-
----
-
-#### Abnormal Test - Read-Only Destination
-
-**File Path:** Normal input file  
-**Output Location:** Read-only folder
-
-**Setup:** Set output folder permissions to read-only before testing
-
-**BEFORE Screenshot:**
-
-`[Insert screenshot showing read-only output folder selected]`
-
----
-
-**AFTER Screenshot:**
-
-`[Insert screenshot showing permission denied error message]`
-
-**Actual Result:** _______________________________________________
-
-**Error Message:** _______________________________________________
 
 ---
 
