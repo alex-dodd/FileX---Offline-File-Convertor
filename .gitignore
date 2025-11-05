@@ -8,9 +8,6 @@ target/
 .vscode/
 .settings/
 
-# Test files - large binaries
-test_files/*.png
-
 # OS files
 .DS_Store
 Thumbs.db
