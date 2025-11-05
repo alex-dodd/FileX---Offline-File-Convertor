@@ -22,8 +22,8 @@ What actually works: Only single file conversions. You have to convert files one
 
 **How to fix it:** 
 - Add a "Batch" tab to the UI with folder selection
-- Use `Files.walk()` to recursively traverse directories
-- Implement MIME detection with `java.nio.file.Files.probeContentType()` or Apache Tika library
+- Use `Files.walk()` to recursively traverse directories (needs Java 8+)
+- Implement MIME detection with `java.nio.file.Files.probeContentType()` or better yet Apache Tika library (more reliable cross-platform)
 - Create matching output folder structure using `Files.createDirectories()`
 - Add progress tracking showing "file X of Y" instead of just a spinner
 
@@ -47,6 +47,7 @@ What actually works: Single-file conversions run on background threads using Jav
 - Calculate ETA based on average time per file
 - Update progress bar to show actual percentage instead of spinner
 - Display "Processing file 3/10" type messages
+- Remember to call `executor.shutdown()` when app closes to prevent resource leaks
 
 **Suggestion:** Start with a pool of 2 threads first and test stability. 4 threads might cause issues on weaker machines, especially with large files.
 
@@ -127,7 +128,10 @@ setOnDragOver(event -> {
 
 setOnDragDropped(event -> {
     List<File> files = event.getDragboard().getFiles();
-    sourceFileField.setText(files.get(0).getAbsolutePath());
+    if (!files.isEmpty()) {
+        sourceFileField.setText(files.get(0).getAbsolutePath());
+        // Note: only takes first file, could show warning if multiple dragged
+    }
 });
 ```
 
@@ -628,7 +632,7 @@ This section documents structured testing for two critical input variables using
 
 #### Abnormal Test - Unicode Characters
 
-**File Path:** `C:\Documents\תּוֹרָה.docx` (Hebrew)
+**File Path:** `C:\Documents\תורה.docx` (Hebrew)
 
 **BEFORE Screenshot:**
 
